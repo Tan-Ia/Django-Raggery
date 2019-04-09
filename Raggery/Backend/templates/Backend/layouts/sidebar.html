@@ -1,0 +1,165 @@
+<aside id="sidebar-left" class="sidebar-left">
+				
+    <div class="sidebar-header">
+        <div class="sidebar-title">
+            My Module
+        </div>
+        <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+            <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+        </div>
+    </div>
+
+    <div class="nano">
+        <div class="nano-content">
+            <nav id="menu" class="nav-main" role="navigation">
+                <ul class="nav nav-main">
+                    <li class="nav-active">
+                        <a href="{% url 'backend-home' %}">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'category' %}">
+                            <span class="pull-right label label-primary">1</span>
+                            <i class="fa fa-list-ol" aria-hidden="true"></i>
+                            <span>Category</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'subcategory' %}">
+                            <span class="pull-right label label-primary">1</span>
+                            <i class="fa fa-th" aria-hidden="true"></i>
+                            <span>Sub Catagory</span>
+                        </a>
+                    </li>     
+                    <li>
+                        <a href="{% url 'producttype' %}">
+                            <span class="pull-right label label-primary">1</span>
+                            <i class="fa  fa-align-justify" aria-hidden="true"></i>
+                            <span>Product Type </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'brand' %}">
+                            <span class="pull-right label label-primary">1</span>
+                            <i class="fa  fa-align-justify" aria-hidden="true"></i>
+                            <span>Brand</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a>
+                            <i class="fa fa-gear" aria-hidden="true"></i>
+                            <span> Product Details</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li>
+                                
+                                <a href="{% url 'material' %}">
+                                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+
+                                     Product  Material
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'specification' %}"> 
+                                        <i class="fa fa-share-square-o" aria-hidden="true"></i>
+                                     Product  Specification
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'size' %}">
+                                    <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                                      Product Size
+                                </a>
+                            </li>
+                            
+                            
+                        </ul>
+                    </li>   
+                    <li>
+                        <a href="{% url 'template' %}">
+                            <span class="pull-right label label-primary">1</span>
+                            <i class="fa  fa-plus-square" aria-hidden="true"></i>
+                            <span> Product Template</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'productadd' %}">
+                            <span class="pull-right label label-primary">1</span>
+                            <i class="fa  fa-plus-square" aria-hidden="true"></i>
+                            <span> Product Add</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'stockreport' %}">
+                            <span class="pull-right label label-primary">1</span>
+                            <i class="fa  fa-plus-square" aria-hidden="true"></i>
+                            <span> Stock  Report</span>
+                        </a>
+                    </li>
+                  
+                       
+                   
+                      
+                       <li class="nav-parent">
+                        <a>
+                            <i class="fa fa-gear" aria-hidden="true"></i>
+                            <span> Report</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li>
+                                
+                                <a href="layouts/add_attendance.html">
+                                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                                    Purchase
+
+                                </a>
+                            </li>
+                                <li>
+                                
+                                <a href="layouts/attendance_report.html">
+                                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                                     Purchase Report
+
+                                </a>
+                            </li>
+                            
+                            
+                            
+                        </ul>
+                    </li>  
+                     <li class="nav-parent">
+                        <a>
+                            <i class="fa fa-gear" aria-hidden="true"></i>
+                            <span> Settings</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li>
+                                
+                                <a href="{% url 'general-settings' %}">
+                                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                                    General Settings
+
+                                </a>
+                            </li>
+                            
+                            
+                            
+                        </ul>
+                    </li>   
+            
+        
+                
+                
+                </ul>
+            </nav>
+
+        
+
+        </div>
+
+    </div>
+
+</aside>

@@ -1,0 +1,260 @@
+{% extends 'Backend/index.html' %}
+{% block title%}Home{%endblock%}
+{% block page_title %}Home{% endblock %}
+{% block main_content%}
+{% load static %}
+<div class="row">
+
+
+
+    <div class="col-md-10">
+         <h2><i class="fa fa-bars" aria-label="Toggle sidebar"></i> Product Data Add  Report</h2>
+         <p>Ecommerce Product Data Add And Report</p>
+        
+
+          <div class="controls text-left">
+          <div data-toggle="buttons-checkbox" class="btn-group">
+            <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">
+                <a target="_blank" href="/daily_attendance_pdf">
+                    <span style="color:white"><i class="fa  fa-send" aria-hidden="true"></i> Add</span>
+                </a>
+            </button>
+
+            <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">
+                <a target="_blank" href="/daily_attendance_pdf">
+                    <span style="color:white"><i class="fa  fa-send" aria-hidden="true"></i> Add</span>
+                </a>
+            </button>
+             <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">
+                <a target="_blank" href="/daily_attendance_pdf">
+                    <span style="color:white"><i class="fa  fa-send" aria-hidden="true"></i> Add</span>
+                </a>
+            </button>
+           <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">
+                <a target="_blank" href="/daily_attendance_pdf">
+                    <span style="color:white"><i class="fa  fa-send" aria-hidden="true"></i> Add</span>
+                </a>
+            </button>
+          </div>
+         </div>
+         <br>
+
+         <div class="controls text-right">
+          <div data-toggle="buttons-checkbox" class="btn-group">
+             <button  class="btn btn-default"  title='Export PDF' type="button">
+                 <a target="_blank" href="">
+                     <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                 </a>
+             </button>
+             <button class="btn btn-default"  title='Export Excel' type="button">
+                 <a  href="/daily_attendance_excle">
+                     <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                 </a>
+             </button>
+             <button class="btn btn-default" title='Preview' ttype="button">
+                 <a target="_blank" href="/daily_attendance_pdf">
+                     <i class="fa fa-file-image-o"></i>
+                 </a>
+             </button>
+            <button class="btn btn-default" title='Print' type="button">
+                <i class="fa fa-print" aria-hidden="true"></i>
+            </button>
+          </div>
+         </div>
+         <br>
+                
+        
+        <div class="tabs tabs-vertical tabs-left">
+            <ul class="nav nav-tabs col-sm-3 col-xs-5">
+                <li class="active">
+                    <a href="#popular11" data-toggle="tab"><i class="fa fa-table"></i> Product Data Add Report</a>
+                </li>
+                <li>
+                    <a href="#recent11" data-toggle="tab"><i class="fa fa-plus-square-o"></i>  Product Data Add Add</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="popular11" class="tab-pane active">
+                 <section class="panel panel-primary">
+                     <header class="panel-heading portlet-handler">
+                       <div class="panel-actions">
+                <a href="#" class="fa fa-caret-down"></a>
+                <a href="#" class="fa fa-times"></a>
+            </div>
+    
+            <h2 class="panel-title"> <i class="fa fa-table"></i> Product Data Add  Report</h2>
+        </header>
+        <div class="panel-body">
+            <table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="{% static 'Backend/assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf' %}">
+                <thead>
+                    <tr>
+                        <th>SL</th>
+                        <th>Product Name</th>
+                        <th>Product Code</th>
+                        <th>Quantity</th>
+                        
+                        <th class="actions">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr class="gradeX">
+                        <td>1</td>
+                        <td>
+                            T-shirt
+                        </td>
+                        
+                        <td>
+                            Women
+                        </td>
+                        <td>
+                            T-shirt
+                        </td>
+                        
+                    
+                
+                        
+                        <td class="center actions">
+                            <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                            <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                        </td>
+                    </tr>
+                    
+            
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+                </div>
+                <div id="recent11" class="tab-pane">
+                    <form id="form" action="forms-validation.html" class="form-horizontal">
+            <section class="panel panel-primary">
+                <header class="panel-heading portlet-handler">
+                    <div class="panel-actions">
+                        <a href="#" class="fa fa-caret-down"></a>
+                        <a href="#" class="fa fa-times"></a>
+                    </div>
+
+                    <h2 class="panel-title"><i class="fa fa-plus-square-o"></i> Create Product Data  </h2>
+                    
+                </header>
+                <div class="panel-body">
+                    
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Product Code </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="product_name" class="form-control" placeholder="Product Code " required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Product Name </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="product_name" class="form-control" placeholder="Product Name" required/>
+                        </div>
+                    </div>
+                    
+                         <div class="form-group">
+                        <label class="col-sm-3 control-label">Category Name </label>
+                        <div class="col-sm-9">
+                            <select id="company" class="form-control" name="category_name" required>
+                                <option value="">Choose a Category</option>
+                                <option value="apple">Apple</option>
+                                <option value="google">Google</option>
+                                <option value="microsoft">Microsoft</option>
+                    
+                            </select>
+                            
+                        </div>
+                    </div>
+                        
+
+                         <div class="form-group">
+                        <label class="col-sm-3 control-label">Sub Catagory </label>
+                        <div class="col-sm-9">
+                            <select id="company" class="form-control" name="subcategory_name" required>
+                                <option value="">Choose a SubCategory</option>
+                                <option value="apple">Apple</option>
+                                <option value="google">Google</option>
+                                <option value="microsoft">Microsoft</option>
+                    
+                            </select>
+                        
+                        </div>
+                    </div>
+                        
+                         <div class="form-group">
+                        <label class="col-sm-3 control-label">Product Type </label>
+                        <div class="col-sm-9">
+                            <select id="company" class="form-control" name="product_type" required>
+                                <option value="">Choose a Product Type</option>
+                                <option value="apple">Apple</option>
+                                <option value="google">Google</option>
+                                <option value="microsoft">Microsoft</option>
+                    
+                            </select>
+                            
+                        </div>
+                    </div>
+                        <div class="form-group">
+                        <label class="col-sm-3 control-label">Brand</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="brand" class="form-control" placeholder="Brand" required/>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label class="col-sm-3 control-label">Purchase Price </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="purchase_price" class="form-control" placeholder="Purchase Price " required/>
+                            
+                        </div>
+                    </div>
+                          <div class="form-group">
+                        <label class="col-sm-3 control-label">Sale Price </label>
+                        <div class="col-sm-9">
+                        <input type="text" name="sale_price" class="form-control" placeholder="Sale Price" required/>
+                            
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label class="col-sm-3 control-label">Off Price </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="purchase_price" class="form-control" placeholder="Off Price" required/>
+                            
+                        </div>
+                    </div>
+                        <div class="form-group">
+                        <label class="col-sm-3 control-label">Product Quantity </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="product_quantity" class="form-control" placeholder="Product Quantity" required/>
+                        </div>
+                    </div>
+                 
+                
+                    
+        
+                </div>
+                <footer class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <button class="btn btn-primary">Submit</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
+                        </div>
+                    </div>
+                </footer>
+            </section>
+        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+</div>
+
+
+
+
+{% endblock %}
+
