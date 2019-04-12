@@ -127,3 +127,7 @@ STATIC_URL = '/static/'
 
 # All settings common to all environments
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+LOGIN_URL='/backend/login'
+
+LOGIN_REDIRECT_URL='/backend/'
