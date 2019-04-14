@@ -66,13 +66,14 @@
          <br>
                 
         
-        <div class="tabs tabs-vertical tabs-left">
-            <ul class="nav nav-tabs col-sm-3 col-xs-5">
+         <div class="tabs tabs-primary">
+            
+            <ul class="nav nav-tabs">
                 <li class="active">
-                    <a href="#popular11" data-toggle="tab"><i class="fa fa-table"></i> Subcategory Report</a>
+                    <a href="#popular11" data-toggle="tab"><i class="fa fa-table"></i> Subcategory  Report</a>
                 </li>
                 <li>
-                    <a href="#recent11" data-toggle="tab"><i class="fa fa-plus-square-o"></i>  Subcategory Add</a>
+                    <a href="#recent11" data-toggle="tab"><i class="fa  fa-plus-square-o"></i> Subcategory Add</a>
                 </li>
             </ul>
             <div class="tab-content">
@@ -99,81 +100,35 @@
                     </tr>
                 </thead>
                 <tbody>
-                <tr class="gradeX">
-                        <td>1</td>
-                        <td>
-                            T-shirt
-                        </td>
-                        <td>
-                            Women
-                        </td>
-                        <td>this thi Women cloth category</td>
-                        <td class="center hidden-phone">Active</td>
-                        <td class="center actions">
-                            <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                            <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                        </td>
-                    </tr>
+                
+                    {% for data_fetch in subcategory_data %}
                     <tr class="gradeX">
-                        <td>1</td>
+                        <td>{{forloop.counter}}</td>
                         <td>
-                            T-shirt
+                           {{data_fetch.subcategory_name}}
                         </td>
                         <td>
-                            Women
+                                {{data_fetch.category}}
                         </td>
-                        <td>this thi Women cloth category</td>
-                        <td class="center hidden-phone">Active</td>
+                        <td> {{data_fetch.subcategory_des|slice:'20'}}</td>
+                        <td class="center hidden-phone">
+                            {% if data_fetch.subcategory_status == "Active" %}
+                               <span style="color:green">{{data_fetch.subcategory_status}}</span>
+                            {% else %}
+                             <span style="color:red"> {{data_fetch.subcategory_status}}</span>
+                            {% endif %}
+                        </td>
                         <td class="center actions">
-                            <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                            <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                            <a href="{% url 'subcategory_delete' data_fetch.id %}" class="on-default remove-row" onclick="return confirm('Are You Sure?')"><i class="fa fa-trash-o"></i></a>
+                            <a href="{% url 'subcategory_update' data_fetch.id %}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                            {% if data_fetch.subcategory_status == "Active" %}
+                              <a href="{% url 'subcategory_status' data_fetch.id %}" class="on-default edit-row"><span style="color:green"><i class="fa fa-check-circle"></i></span></a>
+                            {% else %}
+                              <a href="{% url 'subcategory_status' data_fetch.id %}" class="on-default edit-row"><span style="color:red"><i class="fa fa-times-circle"></i></span></a>
+                            {% endif %}   
                         </td>
                     </tr>
-                    <tr class="gradeX">
-                        <td>1</td>
-                        <td>
-                            T-shirt
-                        </td>
-                        <td>
-                            Women
-                        </td>
-                        <td>this thi Women cloth category</td>
-                        <td class="center hidden-phone">Active</td>
-                        <td class="center actions">
-                            <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                            <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                        </td>
-                    </tr>
-                    <tr class="gradeX">
-                        <td>1</td>
-                        <td>
-                            T-shirt
-                        </td>
-                        <td>
-                            Women
-                        </td>
-                        <td>this thi Women cloth category</td>
-                        <td class="center hidden-phone">Active</td>
-                        <td class="center actions">
-                            <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                            <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                        </td>
-                    </tr>
-                    <tr class="gradeX">
-                        <td>1</td>
-                        <td>
-                            T-shirt
-                        </td>
-                        <td>
-                            Women
-                        </td>
-                        <td>this thi Women cloth category</td>
-                        <td class="center hidden-phone">Active</td>
-                        <td class="center actions">
-                            <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                            <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                        </td>
-                    </tr>
+                 {% endfor %}
             
                 </tbody>
             </table>
@@ -182,7 +137,8 @@
     
                 </div>
                 <div id="recent11" class="tab-pane">
-                    <form id="form" action="forms-validation.html" class="form-horizontal">
+                    <form  action="" method="POST" class="form-horizontal">
+                        {% csrf_token %}
             <section class="panel panel-primary">
                 <header class="panel-heading">
                     <div class="panel-actions">
@@ -195,44 +151,37 @@
                 </header>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Subcategory Name </label>
+                        <label class="col-sm-3 control-label" for={{form.subcategory_name.label_for_id}}>{{form.subcategory_name.label}} </label>
                         <div class="col-sm-9">
-                            <input type="text" name="category_name" class="form-control" placeholder="Category Name" required/>
+                            {{form.subcategory_name}}
+                            <div class="text-danger mt-3">{{form.subcategory_name.errors}}</div>
+                        
                         </div>
                     </div>
                      <div class="form-group">
-                        <label class="col-sm-3 control-label">Category Name </label>
+                        <label class="col-sm-3 control-label" for={{form.category.label_for_id}}>{{form.category.label}} </label>
                         <div class="col-sm-9">
-                            <select id="company" class="form-control" required>
-                                <option value="">Choose a Company</option>
-                                <option value="apple">Apple</option>
-                                <option value="google">Google</option>
-                                <option value="microsoft">Microsoft</option>
-                    
-                            </select>
-                            <label class="error" for="company"></label>
+                                {{form.category}}
+                                <div class="text-danger mt-3">{{form.category.errors}}</div>
+                          
+                            
                         </div>
                     </div>
                 
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Description</label>
+                        <label class="col-sm-3 control-label" for="{{form.subcategory_des.label_for_id}}">{{form.category_des.label}}</label>
                         <div class="col-sm-9">
-                            <textarea name="description" rows="5" class="form-control" placeholder="Describe About Category" required></textarea>
+                            {{form.subcategory_des}}
+                            <div class="text-danger mt-3">{{form.subcategory_des.errors}}</div>
+                            <!-- <textarea name="category_des" rows="5" class="form-control" placeholder="Describe About Category" required></textarea> -->
                         </div>
                     </div>
             
                      <div class="form-group">
-                           <label class="col-sm-3 control-label">Status </label>
+                           <label class="col-sm-3 control-label" for=" {{form.subcategory_status.label_for_id}}"> {{form.subcategory_status.label}} </label>
                         <div class="col-sm-9">
-                            <div class="radio-custom radio-primary">
-                                <input id="awesome" name="status" type="radio" value="Active" required />
-                                <label for="awesome">Active</label>
-                            </div>
-                            <div class="radio-custom radio-primary">
-                                <input id="very-awesome" name="status" type="radio" value="Inactive" />
-                                <label for="very-awesome">Inactive</label>
-                            </div>
-                            
+                            {{form.subcategory_status}}
+                            <div class="text-danger mt-3"> {{form.subcategory_status.errors}}</div>
                             
                           </div>
                       </div>
