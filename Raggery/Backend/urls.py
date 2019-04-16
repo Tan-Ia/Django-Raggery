@@ -23,7 +23,12 @@ urlpatterns=[
 
 
     #end subcategory url
+    #start product type url
     path('product-type',views.productType,name="producttype"),
+    path('product_status/<int:pk>',views.product_status,name="product_status"),
+    path('product_delete/<int:pk>',views.product_delete,name="product_delete"),
+    path('product_update/<int:pk>',views.product_update,name="product_update"),
+    #end product type url
     path('brand',views.brand,name="brand"),
     path('product-material',views.productMaterial,name="material"),
     path('product-specification',views.productSpecification,name="specification"),

@@ -38,7 +38,7 @@ def backendLoginout(request):
 # start home view method           
 @login_required  
 def homeView(request):
-        if request.methodobjects =='GET':
+        if request.method =='GET':
                 return render(request,'Backend/home.html')
 # end home view method
 
@@ -127,6 +127,7 @@ def category_download(request):
 # end category download method
 
 # start subcategory method
+
 @login_required
 def subcategory(request):
         all_data=SubcategoryModel.objects.all()
@@ -140,6 +141,7 @@ def subcategory(request):
         else:
            
                 subcategory_form=SubcategoryForm()
+
         context={
                 'form':subcategory_form,
                 'subcategory_data':all_data
@@ -182,7 +184,10 @@ def subcategory_update(request,pk):
 def productType(request):
         product_type_data=ProductTypeModel.objects.all()
         if request.method =='POST':
-                return HttpResponse('Ok')
+                product_add=ProductTypeFrom(request.POST)
+                product_add.save()
+                messages.success(request,'Product Type Save Successfully')
+                return HttpResponseRedirect(reverse('producttype'))
         else:
                 product_type=ProductTypeFrom()
         context={
@@ -190,6 +195,38 @@ def productType(request):
                 'all_data':product_type_data
         }                
         return render(request,'Backend/product_type/product_type.html',context)
+def product_status(request,pk):
+        product_data=get_object_or_404(ProductTypeModel,pk=pk)
+        # product=ProductTypeModel.objects.filter(pk=pk)
+        if product_data.status == "Active":
+                product_data.status='Inactive'
+                messages.warning(request,'Status Inactive Successfully')
+        else:
+                product_data.status='Active'
+                messages.success(request,"Status Active Successfully")
+        product_data.save()  
+        # print(product.subcategory)              
+        return HttpResponseRedirect(reverse('producttype'))      
+
+def product_delete(request,pk):
+        product_data=get_object_or_404(ProductTypeModel,pk=pk)
+        product_data.delete()
+        messages.warning(request,'Delete Operation Successfull')
+        return HttpResponseRedirect(reverse('producttype'))
+
+def product_update(request,pk):
+        product_data=get_object_or_404(ProductTypeModel,pk=pk)
+        if request.method == 'POST':
+                edit_data=ProductTypeFrom(request.POST or None,instance=product_data)
+                edit_data.save()
+                messages.success(request,'Update Operation Successfull')
+        else:
+                edit_data=ProductTypeFrom(instance=product_data)
+        context={
+                'form':edit_data,
+                
+        }                
+        return render(request,'Backend/product_type/product_type_update.html',context)        
 # end product type method
 
 @login_required
