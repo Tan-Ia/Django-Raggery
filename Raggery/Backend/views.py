@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .forms.category_form import CategoryForm
 from .forms.subcategory_form import SubcategoryForm
 from .forms.product_type_form import ProductTypeFrom
+from .forms.product_metarial_form import ProductMetarialForm
 from .models import *
 from Raggery.utils import render_to_pdf
 # Create your views here.
@@ -228,16 +229,24 @@ def product_update(request,pk):
         }                
         return render(request,'Backend/product_type/product_type_update.html',context)        
 # end product type method
-
+# start  brand method
 @login_required
 def brand(request):
         if request.method =='GET':
             return render(request,'Backend/brand.html')
+# end  brand method
+# start product metarial method
 @login_required
 def productMaterial(request):
-        if request.method =='GET':
-                return render(request,'Backend/product_material.html')
-
+        if request.method =='POST':
+               HttpResponse('ok')
+        else:
+                metarial_form=ProductMetarialForm()
+        context={
+                'form':metarial_form
+        }        
+        return render(request,'Backend/product_material.html',context)
+# end product metarial method 
 @login_required
 def productSpecification(request):
         if request.method =='GET':

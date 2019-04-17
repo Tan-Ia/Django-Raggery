@@ -28,4 +28,14 @@ class ProductTypeModel(models.Model):
     des=models.TextField()
     status=models.CharField(max_length=10)
     created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now=True)      
+    updated_at=models.DateTimeField(auto_now=True) 
+class ProductMetarial(models.Model):
+    metrial_name=models.CharField(max_length=50)
+    category=models.ForeignKey(CategoryModel,on_delete=models.DO_NOTHING,default=1)
+    subcategory=models.ForeignKey(SubcategoryModel,on_delete=models.DO_NOTHING,default=1)
+    product_type=models.ForeignKey(ProductTypeModel,on_delete=models.DO_NOTHING,default=1)
+    status=models.CharField(max_length=10)
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
+
+
