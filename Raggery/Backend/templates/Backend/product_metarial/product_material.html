@@ -64,8 +64,9 @@
          <br>
                 
         
-        <div class="tabs tabs-vertical tabs-left">
-            <ul class="nav nav-tabs col-sm-3 col-xs-5">
+         <div class="tabs tabs-primary">
+            
+            <ul class="nav nav-tabs">
                 <li class="active">
                     <a href="#popular11" data-toggle="tab"><i class="fa fa-table"></i> Product Material Report</a>
                 </li>
@@ -216,7 +217,7 @@
 <script type='text/javascript'>
      $(document).ready(function(){
         $("#subcategory").html("<option>--Select Subcategory--</option>");
-        // $('#product_type').html("<option value=''>--Select Product Type--</option>")
+       
          $('#category').change(function(){
            var category=$(this).val();
            var csrf='{{ csrf_token }}'
@@ -244,35 +245,36 @@
              });
 
          });
-        //  $('#subcategory').change(function(){
-        //      var subcategory=$(this).val();
-        //      var csrf='{{csrf_token}}';
-        //      $.ajax({
-        //          url:"{% url 'get_producttype'  %}",
-        //          method:'POST',
-        //          data:{'subcategory':subcategory,'csrfmiddlewaretoken':csrf},
-        //          success:function(data)
-        //          {
+          $('#product_type').html("<option value=''>--Select Product Type--</option>")
+         $('#subcategory').change(function(){
+             var subcategory=$(this).val();
+             var csrf='{{csrf_token}}';
+             $.ajax({
+                 url:"{% url 'get_producttype'  %}",
+                 method:'POST',
+                 data:{'subcategory':subcategory,'csrfmiddlewaretoken':csrf},
+                 success:function(data)
+                 {
                     
-        //              if(data.length>0)
-        //              {
+                     if(data.length>0)
+                     {
                          
-        //                  $('#product_type').html("<option value=''>--Select--</option>");
-        //                 for(i=0;i<data.length;i++)
-        //                 {
-        //                     console.log(data[i].fields)
-        //                   $('#product_type').append("<option value='"+data[i].pk+"'>"+data[i].fields.product_type+"<option>");
-        //                  }
-        //              }
-        //              else
-        //              {
-        //                  $('#product_type').html("<option value=''>--No Data Found--</option>");
-        //              }
+                         $('#product_type').html("<option value=''>--Select--</option>");
+                        for(i=0;i<data.length;i++)
+                        {
+                            
+                          $('#product_type').append("<option value='"+data[i].pk+"'>"+data[i].fields.product_type+"<option>");
+                         }
+                     }
+                     else
+                     {
+                         $('#product_type').html("<option value=''>--No Data Found--</option>");
+                     }
                    
                    
-        //          }
-        //      });
-        //  });
+                 }
+             });
+         });
 
      });
   
