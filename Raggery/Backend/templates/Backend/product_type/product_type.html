@@ -212,5 +212,49 @@
 
 
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+        $("#subcategory_id").html("<option>--Select Subcategory--</option>");
+       
+         $('#category_id').change(function(){
+            
+           var category=$(this).val();
+         
+           var csrf='{{ csrf_token }}'
+             $.ajax({
+               url:"{% url  'get_subcategory' %}",
+               method:'POST',
+               data:{'category':category,'csrfmiddlewaretoken':csrf},
+               success:function(data){
+             
+                  if(data.length>0)
+                  {
+                    $('#subcategory_id').html("<option>--Select--</option>");
+                    for(i=0;i<data.length;i++)
+                    {        
+                     $("#subcategory_id").append("<option value='"+data[i].pk+"'>"+data[i].fields.subcategory_name+"</option>");
+                    }
+                  }
+                  else
+                  {
+                    $("#subcategory_id").html("<option>--No Data Found--</option>"); 
+                  }
+               
+              }
+   
+             });
+
+         });
+       
+
+     });
+  
+   
+   
+    
+   
+   </script>
+   
 {% endblock %}
 

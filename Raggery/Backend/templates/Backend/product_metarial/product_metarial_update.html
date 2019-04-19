@@ -1,0 +1,231 @@
+{% extends 'Backend/index.html' %}
+{% block title%}Home{%endblock%}
+{% block page_title %}Home{% endblock %}
+{% block main_content%}
+{% load static %}
+
+<div class="row">
+
+ 
+
+
+    <div class="col-md-10">
+         <h2><i class="fa fa-bars" aria-label="Toggle sidebar"></i> Category Report</h2>
+         <p>Ecommerce Category Add And Report</p>
+        
+
+          <div class="controls text-left">
+          <div data-toggle="buttons-checkbox" class="btn-group">
+            <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">
+                <a target="_blank" href="/daily_attendance_pdf">
+                    <span style="color:white"><i class="fa  fa-send" aria-hidden="true"></i> Add</span>
+                </a>
+            </button>
+
+            <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">
+                <a target="_blank" href="/daily_attendance_pdf">
+                    <span style="color:white"><i class="fa  fa-send" aria-hidden="true"></i> Add</span>
+                </a>
+            </button>
+             <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">
+                <a target="_blank" href="/daily_attendance_pdf">
+                    <span style="color:white"><i class="fa  fa-send" aria-hidden="true"></i> Add</span>
+                </a>
+            </button>
+           <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">
+                <a target="_blank" href="/daily_attendance_pdf">
+                    <span style="color:white"><i class="fa  fa-send" aria-hidden="true"></i> Add</span>
+                </a>
+            </button>
+          </div>
+         </div>
+         <br>
+
+         <div class="controls text-right">
+          <div data-toggle="buttons-checkbox" class="btn-group">
+             <button  class="btn btn-default"  title='Export PDF' type="button">
+                 <a target="_blank" href="">
+                     <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                 </a>
+             </button>
+             <button class="btn btn-default"  title='Export Excel' type="button">
+                 <a  href="/daily_attendance_excle">
+                     <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                 </a>
+             </button>
+             <button class="btn btn-default" title='Preview' ttype="button">
+                 <a target="_blank" href="/daily_attendance_pdf">
+                     <i class="fa fa-file-image-o"></i>
+                 </a>
+             </button>
+            <button class="btn btn-default" title='Print' type="button">
+                <i class="fa fa-print" aria-hidden="true"></i>
+            </button>
+          </div>
+         </div>
+         <br>
+               <!-- {% if messages%} 
+               <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Success!</strong> {{messages}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  {% endif %} -->
+        
+        <div class="tabs tabs-primary">
+            
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#popular11" data-toggle="tab"><i class="fa fa-star"></i> Product Metarial Update</a>
+                </li>
+               
+            </ul>
+            <div class="tab-content">
+            
+                <div id="popular11"  class="tab-pane active">
+            <form method="POST" action="">
+                {% csrf_token %}
+                <section class="panel panel-primary">
+                    <header class="panel-heading">
+                      <div class="panel-actions">
+                        <a href="#" class="fa fa-caret-down"></a>
+                        <a href="#" class="fa fa-times"></a>
+                      </div>
+
+                    <h2 class="panel-title"><i class="fa fa-plus-square-o"></i> Product Metarial Update Form</h2>
+                    </header>
+               
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="{{form.metarial_name.lebel_for_id}}"> {{ form.metarial_name.label }} </label>
+                            <div class="col-sm-9">
+                                    {{  form.metarial_name }}
+                                    <div class="text-danger">{{form.metarial_name.errors}}</div> 
+                                <!-- <input type="text" name="category_name" class="form-control" placeholder="Category Name" required/> -->
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label class="col-sm-3 control-label" for="{{form.category.label_for_id}} "> {{form.category.label}} </label>
+                            <div class="col-sm-9">
+                               {{form.category}}
+                               <div class="text-danger">{{form.category.errors}}</div>
+                                
+                            </div>
+                        </div>
+                              <div class="form-group">
+                            <label class="col-sm-3 control-label" for={{form.subcategory.label_for_id}}> {{form.subcategory.label}} </label>
+                            <div class="col-sm-9">
+                                    {{form.subcategory}}
+                                    <div class="text-danger">{{form.subcategory.errors}}</div>
+                                
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label class="col-sm-3 control-label" for="{{form.product_type.label_for_id}}">{{form.product_type.label}} </label>
+                            <div class="col-sm-9">
+                              {{form.product_type}}
+                              <div class="text-danger">{{form.product_type.errors}}</div>
+                                
+                            </div>
+                        </div>
+                    
+                
+                         <div class="form-group">
+                               <label class="col-sm-3 control-label" for="{{form.status.label_for_id}}">{{form.status.label}} </label>
+                            <div class="col-sm-9">
+                                    {{form.status}}
+                                    <div class="text-danger">{{form.status.errors}}</div>
+                                
+                                
+                              </div>
+                          </div>
+                    </div>
+                    <footer class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-9 col-sm-offset-3">
+                                <button class="btn btn-primary">Submit</button>
+                                <button type="reset" class="btn btn-default">Reset</button>
+                            </div>
+                        </div>
+                </footer>
+              </section>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type='text/javascript'>
+     $(document).ready(function(){
+     
+         $('#category').change(function(){
+           var category=$(this).val();
+           var csrf='{{ csrf_token }}'
+             $.ajax({
+               url:"{% url  'get_subcategory' %}",
+               method:'POST',
+               data:{'category':category,'csrfmiddlewaretoken':csrf},
+               success:function(data){
+             
+                  if(data.length>0)
+                  {
+                    $('#subcategory').html("<option>--Select--</option>");
+                    for(i=0;i<data.length;i++)
+                    {        
+                     $("#subcategory").append("<option value='"+data[i].pk+"'>"+data[i].fields.subcategory_name+"</option>");
+                    }
+                  }
+                  else
+                  {
+                    $("#subcategory").html("<option>--No Data Found--</option>"); 
+                  }
+               
+              }
+   
+             });
+
+         });
+         $('#subcategory').change(function(){
+             var subcategory=$(this).val();
+             var csrf='{{csrf_token}}';
+             $.ajax({
+                 url:"{% url 'get_producttype'  %}",
+                 method:'POST',
+                 data:{'subcategory':subcategory,'csrfmiddlewaretoken':csrf},
+                 success:function(data)
+                 {
+                     if(data.length>0)
+                     {
+                         $('#product_type').html("<option value=''>--Select--</option>");
+                        for(i=0;i<data.length;i++)
+                        {
+                         $('#product_type').append("<option value='"+data[i].pk+"'>"+data[i].fields.product_type+"<option>");
+                        }
+                     }
+                     else
+                     {
+                         $('#product_type').html("<option value=''>--No Data Found--</option>");
+                     }
+                   
+                   
+                 }
+             });
+         });
+
+     });
+  
+   
+   
+    
+   
+   </script>
+   
+   
+{% endblock %}

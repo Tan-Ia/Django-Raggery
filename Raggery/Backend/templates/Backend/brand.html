@@ -223,7 +223,7 @@
                                     <div class="input-append">
                                         <div class="uneditable-input">
                                             <i class="fa fa-file fileupload-exists"></i>
-                                            <span class="fileupload-preview">Screenshot from 2019-03-26 02-16-05.png</span>
+                                            <span class="fileupload-preview" >Screenshot from 2019-03-26 02-16-05.png</span>
                                         </div>
                                         <span class="btn btn-default btn-file">
                                             <span class="fileupload-exists">Change</span>
@@ -272,6 +272,17 @@
 
 
 </div>
+<script type='text/javascript'>
+ $.ajax({
+   url:'/catgory_data',
+   method:'POST',
+   success:function($data){
+
+   }
+
+ });
+
+</script>
 
 
 {% endblock %}
