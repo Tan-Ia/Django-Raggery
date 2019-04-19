@@ -239,7 +239,7 @@ def product_update(request,pk):
 @login_required
 def brand(request):
         if request.method =='GET':
-            return render(request,'Backend/brand.html')
+            return render(request,'Backend/brand/brand.html')
 # end  brand method
 # start product metarial method
 

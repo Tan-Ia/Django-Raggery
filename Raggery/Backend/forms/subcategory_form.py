@@ -7,7 +7,7 @@ class SubcategoryForm(forms.ModelForm):
         fields='__all__'
         category_choices=CategoryModel.objects.filter(category_status="Active")
         status_choices=(('','--select--'),('Active','Active'),('Inactive','Inactive'))
-        # print("hksdhfkjsdhf")
+        
         widgets={
             'subcategory_name':forms.TextInput(attrs={'class':'form-control','placeholder':'Subcategory Name'}),
             'category':forms.Select(attrs={'class':'form-control'},choices=category_choices),

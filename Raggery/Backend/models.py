@@ -32,7 +32,7 @@ class ProductTypeModel(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True) 
     def __str__(self):
-        return self.pCharFieldroduct_type
+        return self.product_type
 
 class ProductMetarial(models.Model):
     metarial_name=models.CharField(max_length=50)
