@@ -12,8 +12,8 @@ class ProductTypeFrom(forms.ModelForm):
         fields='__all__'
         widgets={
             'product_type':forms.TextInput(attrs={'class':'form-control','placeholder':'Product Type Name'}),
-            'category':forms.Select(attrs={'class':'form-control'},choices=category_choices),
-            'subcategory':forms.Select(attrs={'class':'form-control'},choices=subcategory_choices),
+            'category':forms.Select(attrs={'class':'form-control','id':'category_id'},choices=category_choices),
+            'subcategory':forms.Select(attrs={'class':'form-control','id':'subcategory_id'},choices=subcategory_choices),
             'des':forms.Textarea(attrs={'class':'form-control','rows':'4','cols':'5','placeholder':'Product Type Description'}),
             'status':forms.Select(attrs={'class':'form-control'},choices=status_choices)
         }

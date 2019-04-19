@@ -30,7 +30,13 @@ urlpatterns=[
     path('product_update/<int:pk>',views.product_update,name="product_update"),
     #end product type url
     path('brand',views.brand,name="brand"),
+    # start product material url
     path('product-material',views.productMaterial,name="material"),
+    path('sucategory_data',views.getSubcategory,name='get_subcategory'),
+    path('get_producttype',views.getProducttype,name='get_producttype'),
+    path('product_metarial_delete/<int:pk>',views.productMetarialDelete,name='product_metarial_delete'),
+    path('product_metarial_update/<int:pk>',views.productMetarialUpdate,name="product_metarial_update"),
+    # end product material url
     path('product-specification',views.productSpecification,name="specification"),
     path('product-size',views.productSize,name="size"),
     path('product-template',views.productTemplate,name="template"),

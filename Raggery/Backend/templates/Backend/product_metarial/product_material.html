@@ -98,22 +98,35 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for data_fetch in all_data %}
                 <tr class="gradeX">
-                        <td>1</td>
+                        <td>{{forloop.counter}}</td>
                         <td>
-                            T-shirt
+                            {{data_fetch.metarial_name}}
                         </td>
                         <td>
-                            Women
+                                {{data_fetch.category}}
                         </td>
-                        <td>this thi Women cloth category</td>
-                        <td>this thi Women cloth category</td>
-                        <td class="center hidden-phone">Active</td>
+                        <td> {{data_fetch.subcategory}}</td>
+                        <td> {{data_fetch.product_type}}</td>
+                        <td class="center hidden-phone">
+                        {% if data_fetch.status == "Active"%}
+                            <span style="color:rgb(72, 207, 112)">{{data_fetch.status}}</span>
+                        {% else %}
+                            <span style="color: indianred">{{data_fetch.status}}</span>
+                        {% endif %}
+                        </td>
                         <td class="center actions">
-                            <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                            <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                            <a href="{% url 'product_metarial_delete' data_fetch.pk %}" class="on-default remove-row" onclick="return confirm('Are You Sure?')"><i class="fa fa-trash-o"></i></a>
+                            <a href="{%url 'product_metarial_update'  data_fetch.pk %}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                            {% if data_fetch.status == "Active" %}
+                             <a href="" class="on-default edit-row"><span style="color:green"><i class="fa fa-check-circle"></i></span></a>
+                            {% else %}
+                             <a href="" class="on-default edit-row"><span style="color:red"><i class="fa fa-times-circle"></i></span></a>
+                            {% endif %}  
                         </td>
                     </tr>
+                    {% endfor %}
                     
             
                 </tbody>
@@ -123,7 +136,8 @@
     
                 </div>
                 <div id="recent11" class="tab-pane">
-                    <form id="form" action="forms-validation.html" class="form-horizontal">
+                    <form id="form" action=" " class="form-horizontal" method='POST'>
+                        {% csrf_token %}
             <section class="panel panel-primary">
                 <header class="panel-heading">
                     <div class="panel-actions">
@@ -136,10 +150,10 @@
                 </header>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="{{form.metrial_name.lebel_for_id}}"> {{ form.metrial_name.label }} </label>
+                        <label class="col-sm-3 control-label" for="{{form.metarial_name.lebel_for_id}}"> {{ form.metarial_name.label }} </label>
                         <div class="col-sm-9">
-                                {{  form.metrial_name }}
-                                <div class="text-danger">{{form.metrial_name.errors}}</div> 
+                                {{  form.metarial_name }}
+                                <div class="text-danger">{{form.metarial_name.errors}}</div> 
                             <!-- <input type="text" name="category_name" class="form-control" placeholder="Category Name" required/> -->
                         </div>
                     </div>
@@ -172,7 +186,7 @@
                      <div class="form-group">
                            <label class="col-sm-3 control-label" for="{{form.status.label_for_id}}">{{form.status.label}} </label>
                         <div class="col-sm-9">
-                                {{form.Status}}
+                                {{form.status}}
                                 <div class="text-danger">{{form.status.errors}}</div>
                             
                             
@@ -198,8 +212,77 @@
 
 
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type='text/javascript'>
+     $(document).ready(function(){
+        $("#subcategory").html("<option>--Select Subcategory--</option>");
+        // $('#product_type').html("<option value=''>--Select Product Type--</option>")
+         $('#category').change(function(){
+           var category=$(this).val();
+           var csrf='{{ csrf_token }}'
+             $.ajax({
+               url:"{% url  'get_subcategory' %}",
+               method:'POST',
+               data:{'category':category,'csrfmiddlewaretoken':csrf},
+               success:function(data){
+             
+                  if(data.length>0)
+                  {
+                    $('#subcategory').html("<option>--Select--</option>");
+                    for(i=0;i<data.length;i++)
+                    {        
+                     $("#subcategory").append("<option value='"+data[i].pk+"'>"+data[i].fields.subcategory_name+"</option>");
+                    }
+                  }
+                  else
+                  {
+                    $("#subcategory").html("<option>--No Data Found--</option>"); 
+                  }
+               
+              }
+   
+             });
 
+         });
+        //  $('#subcategory').change(function(){
+        //      var subcategory=$(this).val();
+        //      var csrf='{{csrf_token}}';
+        //      $.ajax({
+        //          url:"{% url 'get_producttype'  %}",
+        //          method:'POST',
+        //          data:{'subcategory':subcategory,'csrfmiddlewaretoken':csrf},
+        //          success:function(data)
+        //          {
+                    
+        //              if(data.length>0)
+        //              {
+                         
+        //                  $('#product_type').html("<option value=''>--Select--</option>");
+        //                 for(i=0;i<data.length;i++)
+        //                 {
+        //                     console.log(data[i].fields)
+        //                   $('#product_type').append("<option value='"+data[i].pk+"'>"+data[i].fields.product_type+"<option>");
+        //                  }
+        //              }
+        //              else
+        //              {
+        //                  $('#product_type').html("<option value=''>--No Data Found--</option>");
+        //              }
+                   
+                   
+        //          }
+        //      });
+        //  });
 
+     });
+  
+   
+   
+    
+   
+   </script>
+   
+   
 
 
 

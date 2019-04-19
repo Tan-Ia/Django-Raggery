@@ -9,6 +9,7 @@ from .forms.subcategory_form import SubcategoryForm
 from .forms.product_type_form import ProductTypeFrom
 from .forms.product_metarial_form import ProductMetarialForm
 from .models import *
+from django.core import serializers
 from Raggery.utils import render_to_pdf
 # Create your views here.
 # start coustom login  logout method
@@ -79,9 +80,10 @@ def category_update(request,pk):
         category_update_data=get_object_or_404(CategoryModel,pk=pk)
         if request.method == 'POST':
                 form=CategoryForm(request.POST or None,instance=category_update_data)
-                form.save()
-                messages.success(request,"Category Data Save Successfully")
-                return redirect('category_update',pk=pk)
+                if form.is_valid():
+                        form.save()
+                        messages.success(request,"Category Data Save Successfully")
+                        return redirect('category_update',pk=pk)
         else:
                 form=CategoryForm(instance=category_update_data)
         context={
@@ -135,7 +137,6 @@ def subcategory(request):
         if request.method =='POST':
                 subcategory_form=SubcategoryForm(request.POST)
                 if subcategory_form.is_valid():
-                       
                         subcategory_form.save()
                         messages.success(request,'Subcategory Data Save Sucessfully')
                         return HttpResponseRedirect(reverse('subcategory'))
@@ -165,13 +166,15 @@ def subcategory_delete(request,pk):
         subcategory_data.delete()
         messages.warning(request,"Delete Data Successfully")
         return HttpResponseRedirect(reverse('subcategory'))
+        
 def subcategory_update(request,pk):
         subcategory_data=get_object_or_404(SubcategoryModel,pk=pk)
         if request.method == 'POST':
                 subcategory_update=SubcategoryForm(request.POST or None,instance=subcategory_data)
-                subcategory_update.save()
-                messages.success(request,'Update Operation Successful')
-                return redirect('subcategory_update',pk=pk)
+                if subcategory_update.is_valid():
+                        subcategory_update.save()
+                        messages.success(request,'Update Operation Successful')
+                        return redirect('subcategory_update',pk=pk)
         else:
                 subcategory_data=SubcategoryForm(instance=subcategory_data)
         context={
@@ -185,10 +188,11 @@ def subcategory_update(request,pk):
 def productType(request):
         product_type_data=ProductTypeModel.objects.all()
         if request.method =='POST':
-                product_add=ProductTypeFrom(request.POST)
-                product_add.save()
-                messages.success(request,'Product Type Save Successfully')
-                return HttpResponseRedirect(reverse('producttype'))
+                product_type=ProductTypeFrom(request.POST)
+                if product_type.is_valid():
+                        product_type.save()
+                        messages.success(request,'Product Type Save Successfully')
+                        return HttpResponseRedirect(reverse('producttype'))
         else:
                 product_type=ProductTypeFrom()
         context={
@@ -219,8 +223,10 @@ def product_update(request,pk):
         product_data=get_object_or_404(ProductTypeModel,pk=pk)
         if request.method == 'POST':
                 edit_data=ProductTypeFrom(request.POST or None,instance=product_data)
-                edit_data.save()
-                messages.success(request,'Update Operation Successfull')
+                if edit_data.is_valid():
+                        edit_data.save()
+                        messages.success(request,'Update Operation Successfull')
+                        return redirect('product_update',pk=pk)
         else:
                 edit_data=ProductTypeFrom(instance=product_data)
         context={
@@ -236,16 +242,63 @@ def brand(request):
             return render(request,'Backend/brand.html')
 # end  brand method
 # start product metarial method
-@login_required
+
+
+
+def getSubcategory(request):
+        category=request.POST.get('category')
+        subcategory=SubcategoryModel.objects.filter(category=category)
+        value = serializers.serialize('json', subcategory)
+        return HttpResponse(value, content_type="application/json")
+
+def getProducttype(request):
+        subcategory=request.POST.get('subcategory')   
+        product_type=ProductTypeModel.objects.filter(subcategory=subcategory)  
+        value_return=serializers.serialize('json',product_type) 
+        return HttpResponse(value_return,content_type="application/json")  
+        
+@login_required   
 def productMaterial(request):
+        product_metarial=ProductMetarial.objects.all()
         if request.method =='POST':
-               HttpResponse('ok')
+                metarial_form=ProductMetarialForm(request.POST)
+                if metarial_form.is_valid():
+                        metarial_form.save()
+                        messages.success(request,'Metarial Data Save Succsessfully')
+                        return HttpResponseRedirect(reverse('material'))
+
         else:
                 metarial_form=ProductMetarialForm()
         context={
-                'form':metarial_form
+                'form':metarial_form,
+                'all_data':product_metarial
         }        
-        return render(request,'Backend/product_material.html',context)
+        return render(request,'Backend/product_metarial/product_material.html',context)
+
+def productMetarialDelete(request,pk):
+       delete_data=get_object_or_404(ProductMetarial,pk=pk)
+       delete_data.delete()
+       messages.warning(request,'Delete Operation Successfull')
+       return HttpResponseRedirect(reverse('material'))    
+
+def productMetarialUpdate(request,pk):
+         get_update_data=get_object_or_404(ProductMetarial,pk=pk)
+         if request.method =='POST':
+                 update_data=ProductMetarialForm(request.POST or None,instance=get_update_data)
+                 if update_data.is_valid():
+                         update_data.save()
+                         messages.success(request,'Update Operation Successfull')
+                         return redirect('product_metarial_update',pk=pk)
+                         
+         else:
+                update_data=ProductMetarialForm(instance=get_update_data)
+         context={
+                'form':update_data
+                
+          }
+         return render(request,'Backend/product_metarial/product_metarial_update.html',context)       
+
+
 # end product metarial method 
 @login_required
 def productSpecification(request):
