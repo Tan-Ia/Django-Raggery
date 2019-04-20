@@ -88,5 +88,5 @@ __pycache__/
 local_settings.py
 
 .env
-db.sqlite3
-BlogProject/db.sqlite3
+# db.sqlite3
+# BlogProject/db.sqlite3
