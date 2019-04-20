@@ -8,6 +8,7 @@ from .forms.category_form import CategoryForm
 from .forms.subcategory_form import SubcategoryForm
 from .forms.product_type_form import ProductTypeFrom
 from .forms.product_metarial_form import ProductMetarialForm
+from .forms.brand_form import BrandForm
 from .models import *
 from django.core import serializers
 from Raggery.utils import render_to_pdf
@@ -238,8 +239,17 @@ def product_update(request,pk):
 # start  brand method
 @login_required
 def brand(request):
-        if request.method =='GET':
-            return render(request,'Backend/brand/brand.html')
+        if request.method =='POST':
+                # form_data=BrandForm(request.POST)
+                return HttpResponse('ok')
+        else:
+                form_data=BrandForm()
+                # data='ok'
+        context={
+                'form':form_data
+        }        
+                
+        return render(request,'Backend/brand/brand.html',context)
 # end  brand method
 # start product metarial method
 

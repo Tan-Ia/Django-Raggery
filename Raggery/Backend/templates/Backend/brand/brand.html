@@ -64,8 +64,9 @@
          <br>
                 
         
-        <div class="tabs tabs-vertical tabs-left">
-            <ul class="nav nav-tabs col-sm-3 col-xs-5">
+         <div class="tabs tabs-primary">
+            
+            <ul class="nav nav-tabs">
                 <li class="active">
                     <a href="#popular11" data-toggle="tab"><i class="fa fa-table"></i>  Brand Report</a>
                 </li>
@@ -155,55 +156,55 @@
                 </header>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Brand Name </label>
+                        <label class="col-sm-3 control-label" for="{{form.brand_name.label_for_id}}">{{form.brand_name.label}} </label>
                         <div class="col-sm-9">
-                            <input type="text" name="brand_name" class="form-control" placeholder="Category Name" required/>
+                           {{form.brand_name}}
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"> Email </label>
+                        <label class="col-sm-3 control-label" for=" {{form.email.label_for_id}}"> {{form.email.label}} </label>
                         <div class="col-sm-9">
                         
-                                <input type="email" name="email" class="form-control valid" placeholder="eg.: email@email.com" required="">
+                            {{form.email}} 
                             
 
                         </div>
                     </div>
 
                         <div class="form-group">
-                        <label class="col-sm-3 control-label"> Phone </label>
+                        <label class="col-sm-3 control-label" for="{{form.phone.label_for_id}}">  {{form.phone.label}}  </label>
                         <div class="col-sm-9">
                         
                             <div class="input-group">
                                 <span class="input-group-addon">
                                             <i class="fa fa-phone"></i>
                                 </span>
-                          <input id="phone" data-plugin-masked-input="" data-input-mask="(999) 999-9999" placeholder="(123) 123-1234" name="phone" class="form-control">
+                         {{form.phone}}
                             
                         </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Founded Date </label>
+                        <label class="col-sm-3 control-label" for="{{form.founded_date.label}}"> {{form.founded_date.label}} </label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 <span class="input-group-addon">
                                    <i class="fa fa-calendar"></i>
                                 </span>
-                            <input id="date" data-plugin-masked-input="" data-input-mask="99/99/9999" placeholder="_/__/___" class="form-control" name="founded_date">
+                                {{form.founded_date}}
                         </div>
                         </div>
                     </div>
                         <div class="form-group">
-                        <label class="col-sm-3 control-label">Type of Company </label>
+                        <label class="col-sm-3 control-label" for="{{form.type_of_company.label_for_id}}">{{form.type_of_company.label}} </label>
                         <div class="col-sm-9">
-                            <input type="text" name="type_of_company" class="form-control" placeholder="Type Of Company" required/>
+                            {{form.type_of_company}}
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Address </label>
+                        <label class="col-sm-3 control-label" for="{{form.address.label_for_id}}">{{form.address.label}} </label>
                         <div class="col-sm-9">
-                            <textarea name="address" rows="2" class="form-control" placeholder="Describe About Category" required></textarea>
+                            {{form.address}}
                         </div>
                     </div>
 
@@ -211,9 +212,9 @@
                     
                 
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Description</label>
+                        <label class="col-sm-3 control-label" for="{{form.description.label}}">{{form.description.label}}</label>
                         <div class="col-sm-9">
-                            <textarea name="description" rows="5" class="form-control" placeholder="Describe About Category" required></textarea>
+                          {{form.description}}
                         </div>
                     </div>
                         <div class="form-group">
@@ -237,16 +238,9 @@
                     </div>
             
                      <div class="form-group">
-                           <label class="col-sm-3 control-label">Status </label>
+                           <label class="col-sm-3 control-label" for="{{form.status.label_for_id}}">{{form.status.label}} </label>
                         <div class="col-sm-9">
-                            <div class="radio-custom radio-primary">
-                                <input id="awesome" name="status" type="radio" value="Active" required />
-                                <label for="awesome">Active</label>
-                            </div>
-                            <div class="radio-custom radio-primary">
-                                <input id="very-awesome" name="status" type="radio" value="Inactive" />
-                                <label for="very-awesome">Inactive</label>
-                            </div>
+                           {{form.status}}
                             
                             
                           </div>
