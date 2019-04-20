@@ -53,7 +53,7 @@ class BrandModel(models.Model):
     type_of_company=models.CharField(max_length=50)
     address=models.CharField(max_length=50)
     description=models.TextField()
-    icon=models.ImageField(upload_to = 'brand_folder/%Y/%m/%d/', default = 'brand_folder/None/no-img.jpg')
+    icon=models.ImageField(upload_to = 'brand_image/', default = 'brand_image/Blank-avatar.png')
     status=models.CharField(max_length=10)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)

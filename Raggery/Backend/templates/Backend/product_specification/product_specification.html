@@ -3,13 +3,14 @@
 {% block page_title %}Home{% endblock %}
 {% block main_content%}
 {% load static %}
+
 <div class="row">
 
 
 
     <div class="col-md-10">
-         <h2><i class="fa fa-bars" aria-label="Toggle sidebar"></i> Product Size Report</h2>
-         <p>Ecommerce Product Size Add And Report</p>
+         <h2><i class="fa fa-bars" aria-label="Toggle sidebar"></i>  Product Specification Report</h2>
+         <p>Ecommerce Product Specification Add And Report</p>
         
 
           <div class="controls text-left">
@@ -68,29 +69,29 @@
             
             <ul class="nav nav-tabs">
                 <li class="active">
-                    <a href="#popular11" data-toggle="tab"><i class="fa fa-table"></i> Product Size Report</a>
+                    <a href="#popular11" data-toggle="tab"><i class="fa fa-table"></i> Product Specification Report</a>
                 </li>
                 <li>
-                    <a href="#recent11" data-toggle="tab"><i class="fa fa-plus-square-o"></i>  Product Size Add</a>
+                    <a href="#recent11" data-toggle="tab"><i class="fa fa-plus-square-o"></i>  Product Specification Add</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div id="popular11" class="tab-pane active">
                  <section class="panel panel-primary">
-                     <header class="panel-heading portlet-handler">
+                     <header class="panel-heading">
                        <div class="panel-actions">
                 <a href="#" class="fa fa-caret-down"></a>
                 <a href="#" class="fa fa-times"></a>
             </div>
     
-            <h2 class="panel-title"> <i class="fa fa-table"></i> Product Size Report</h2>
+            <h2 class="panel-title"> <i class="fa fa-table"></i> Product Specification Report</h2>
         </header>
         <div class="panel-body">
-            <table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="{% static 'Backend/assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf' %}">
+            <table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="../assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
                 <thead>
                     <tr>
                         <th>SL</th>
-                        <th>Size Name</th>
+                        <th>Specification Name</th>
                         <th>Catagory Name</th>
                         <th>Subcatagory Name</th>
                         <th>Product Type Name</th>
@@ -99,23 +100,36 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for data_fetch in all_data %}
                 <tr class="gradeX">
-                        <td>1</td>
+                        <td>{{forloop.counter}}</td>
                         <td>
-                            T-shirt
+                           {{data_fetch.name}}
                         </td>
                         <td>
-                            Women
+                             {{data_fetch.category}}
                         </td>
-                        <td>this thi Women cloth category</td>
-                        <td>this thi Women cloth category</td>
-                        <td class="center hidden-phone">Active</td>
+                        <td>  
+                            {{data_fetch.subcategory}}
+
+                        </td>
+                        <td>  
+                            {{data_fetch.product_type}}
+
+                        </td>
+                        <td class="center hidden-phone">
+                            {% if data_fetch.status == "Active" %}
+                               <span style="color:green">{{data_fetch.status}}</span>
+                            {% else %}
+                            <span style="color:red">{{data_fetch.status}}</span>
+                            {% endif %}
+                        </td>
                         <td class="center actions">
                             <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
                             <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
                         </td>
                     </tr>
-                    
+                    {% endfor %}
             
                 </tbody>
             </table>
@@ -124,77 +138,52 @@
     
                 </div>
                 <div id="recent11" class="tab-pane">
-                    <form id="form" action="forms-validation.html" class="form-horizontal">
+                    <form id="form" action="" method="POST" class="form-horizontal">
+                        {% csrf_token %}
             <section class="panel panel-primary">
-                <header class="panel-heading portlet-handler">
+                <header class="panel-heading">
                     <div class="panel-actions">
                         <a href="#" class="fa fa-caret-down"></a>
                         <a href="#" class="fa fa-times"></a>
                     </div>
 
-                    <h2 class="panel-title"><i class="fa fa-plus-square-o"></i> Add  Product Size</h2>
+                    <h2 class="panel-title"><i class="fa fa-plus-square-o"></i> Create Add Specification</h2>
                     
                 </header>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Size Name </label>
+                        <label class="col-sm-3 control-label" for="form.name.label_for_id">{{form.name.label}} </label>
                         <div class="col-sm-9">
-                            <input type="text" name="size_name" class="form-control" placeholder="Size Name" required/>
+                         {{form.name}}
                         </div>
                     </div>
                      <div class="form-group">
-                        <label class="col-sm-3 control-label">Category Name </label>
+                        <label class="col-sm-3 control-label" for="{{form.category.label_for_id}} ">{{form.category.label}}  </label>
                         <div class="col-sm-9">
-                            <select id="company" class="form-control" name="category_name" required>
-                                <option value="">Choose a Category</option>
-                                <option value="apple">Apple</option>
-                                <option value="google">Google</option>
-                                <option value="microsoft">Microsoft</option>
-                    
-                            </select>
+                           {{form.category}}
                             
                         </div>
                     </div>
                           <div class="form-group">
-                        <label class="col-sm-3 control-label">Subcategory Name </label>
+                        <label class="col-sm-3 control-label" for="{{form.subcategory.label_for_id}}">{{form.subcategory.label}} </label>
                         <div class="col-sm-9">
-                            <select id="company" class="form-control"  name="subcategory_name" required>
-                                <option value="">Choose a Subcategory </option>
-                                <option value="apple">Apple</option>
-                                <option value="google">Google</option>
-                                <option value="microsoft">Microsoft</option>
-                    
-                            </select>
+                                {{form.subcategory}}
                             
                         </div>
                     </div>
                      <div class="form-group">
-                        <label class="col-sm-3 control-label">Product Type Name </label>
+                        <label class="col-sm-3 control-label" for="{{form.product_type.label_for_id}}">{{form.product_type.label}}</label>
                         <div class="col-sm-9">
-                            <select id="company" class="form-control"  name="product_type" required>
-                                <option value="">Choose a Product Type</option>
-                                <option value="apple">Apple</option>
-                                <option value="google">Google</option>
-                                <option value="microsoft">Microsoft</option>
-                    
-                            </select>
+                                {{form.product_type}}
                             
                         </div>
                     </div>
                 
             
                      <div class="form-group">
-                           <label class="col-sm-3 control-label">Status </label>
+                           <label class="col-sm-3 control-label" for="{{form.status.label_for_id}}">{{form.status.label}} </label>
                         <div class="col-sm-9">
-                            <div class="radio-custom radio-primary">
-                                <input id="awesome" name="status" type="radio" value="Active" required />
-                                <label for="awesome">Active</label>
-                            </div>
-                            <div class="radio-custom radio-primary">
-                                <input id="very-awesome" name="status" type="radio" value="Inactive" />
-                                <label for="very-awesome">Inactive</label>
-                            </div>
-                            
+                                {{form.status}}
                             
                           </div>
                       </div>
@@ -219,11 +208,76 @@
 
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type='text/javascript'>
+     $(document).ready(function(){
+        $("#subcategory").html("<option>--Select Subcategory--</option>");
+       
+         $('#category').change(function(){
+           var category=$(this).val();
+           var csrf='{{ csrf_token }}'
+             $.ajax({
+               url:"{% url  'get_subcategory' %}",
+               method:'POST',
+               data:{'category':category,'csrfmiddlewaretoken':csrf},
+               success:function(data){
+             
+                  if(data.length>0)
+                  {
+                    $('#subcategory').html("<option>--Select--</option>");
+                    for(i=0;i<data.length;i++)
+                    {        
+                     $("#subcategory").append("<option value='"+data[i].pk+"'>"+data[i].fields.subcategory_name+"</option>");
+                    }
+                  }
+                  else
+                  {
+                    $("#subcategory").html("<option>--No Data Found--</option>"); 
+                  }
+               
+              }
+   
+             });
 
+         });
+          $('#product_type').html("<option value=''>--Select Product Type--</option>")
+         $('#subcategory').change(function(){
+             var subcategory=$(this).val();
+             var csrf='{{csrf_token}}';
+             $.ajax({
+                 url:"{% url 'get_producttype'  %}",
+                 method:'POST',
+                 data:{'subcategory':subcategory,'csrfmiddlewaretoken':csrf},
+                 success:function(data)
+                 {
+                    
+                     if(data.length>0)
+                     {
+                         
+                         $('#product_type').html("<option value=''>--Select--</option>");
+                        for(i=0;i<data.length;i++)
+                        {
+                            
+                          $('#product_type').append("<option value='"+data[i].pk+"'>"+data[i].fields.product_type+"<option>");
+                         }
+                     }
+                     else
+                     {
+                         $('#product_type').html("<option value=''>--No Data Found--</option>");
+                     }
+                   
+                   
+                 }
+             });
+         });
 
-
-
-
-
+     });
+  
+   
+   
+    
+   
+   </script>
+   
 {% endblock %}
 

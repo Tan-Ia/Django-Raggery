@@ -1,0 +1,282 @@
+{% extends 'Backend/index.html' %}
+{% block title%}Home{%endblock%}
+{% block page_title %}Home{% endblock %}
+{% block main_content%}
+{% load static %}
+<div class="row">
+
+
+
+    <div class="col-md-10">
+         <h2><i class="fa fa-bars" aria-label="Toggle sidebar"></i> Product Size Report</h2>
+         <p>Ecommerce Product Size Add And Report</p>
+        
+
+          <div class="controls text-left">
+          <div data-toggle="buttons-checkbox" class="btn-group">
+            <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">
+                <a target="_blank" href="/daily_attendance_pdf">
+                    <span style="color:white"><i class="fa  fa-send" aria-hidden="true"></i> Add</span>
+                </a>
+            </button>
+
+            <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">
+                <a target="_blank" href="/daily_attendance_pdf">
+                    <span style="color:white"><i class="fa  fa-send" aria-hidden="true"></i> Add</span>
+                </a>
+            </button>
+             <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">
+                <a target="_blank" href="/daily_attendance_pdf">
+                    <span style="color:white"><i class="fa  fa-send" aria-hidden="true"></i> Add</span>
+                </a>
+            </button>
+           <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">
+                <a target="_blank" href="/daily_attendance_pdf">
+                    <span style="color:white"><i class="fa  fa-send" aria-hidden="true"></i> Add</span>
+                </a>
+            </button>
+          </div>
+         </div>
+         <br>
+
+         <div class="controls text-right">
+          <div data-toggle="buttons-checkbox" class="btn-group">
+             <button  class="btn btn-default"  title='Export PDF' type="button">
+                 <a target="_blank" href="">
+                     <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                 </a>
+             </button>
+             <button class="btn btn-default"  title='Export Excel' type="button">
+                 <a  href="/daily_attendance_excle">
+                     <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                 </a>
+             </button>
+             <button class="btn btn-default" title='Preview' ttype="button">
+                 <a target="_blank" href="/daily_attendance_pdf">
+                     <i class="fa fa-file-image-o"></i>
+                 </a>
+             </button>
+            <button class="btn btn-default" title='Print' type="button">
+                <i class="fa fa-print" aria-hidden="true"></i>
+            </button>
+          </div>
+         </div>
+         <br>
+                
+        
+         <div class="tabs tabs-primary">
+            
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#popular11" data-toggle="tab"><i class="fa fa-table"></i> Product Size Report</a>
+                </li>
+                <li>
+                    <a href="#recent11" data-toggle="tab"><i class="fa fa-plus-square-o"></i>  Product Size Add</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="popular11" class="tab-pane active">
+                 <section class="panel panel-primary">
+                     <header class="panel-heading portlet-handler">
+                       <div class="panel-actions">
+                <a href="#" class="fa fa-caret-down"></a>
+                <a href="#" class="fa fa-times"></a>
+            </div>
+    
+            <h2 class="panel-title"> <i class="fa fa-table"></i> Product Size Report</h2>
+        </header>
+        <div class="panel-body">
+            <table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="{% static 'Backend/assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf' %}">
+                <thead>
+                    <tr>
+                        <th>SL</th>
+                        <th>Size Name</th>
+                        <th>Catagory Name</th>
+                        <th>Subcatagory Name</th>
+                        <th>Product Type Name</th>
+                        <th class="hidden-phone">Status</th>
+                        <th class="actions">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data_fetch in all_data %}
+                <tr class="gradeX">
+                        <td>{{forloop.counter}}</td>
+                        <td>
+                            {{data_fetch.name}}
+                        </td>
+                        <td>
+                            {{data_fetch.category}}
+                        </td>
+                        <td>{{data_fetch.subcategory}}</td>
+                        <td>{{data_fetch.product_type}}</td>
+                        <td class="center hidden-phone">
+                           {%  if data_fetch.status == "Active" %}
+                           <span style="color:green">{{data_fetch.status}}</span>
+                           {% else %}
+                           <span style="color:red">{{data_fetch.status}}</span>
+                           {% endif %}
+
+                        </td>
+                        <td class="center actions">
+                            <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                            <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+            
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+                </div>
+                <div id="recent11" class="tab-pane">
+                    <form id="form" action="" method="POST" class="form-horizontal">
+                        {% csrf_token %}
+            <section class="panel panel-primary">
+                <header class="panel-heading portlet-handler">
+                    <div class="panel-actions">
+                        <a href="#" class="fa fa-caret-down"></a>
+                        <a href="#" class="fa fa-times"></a>
+                    </div>
+
+                    <h2 class="panel-title"><i class="fa fa-plus-square-o"></i> Add  Product Size</h2>
+                    
+                </header>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="{{form.name.label_for_id}} ">{{form.name.label}} </label>
+                        <div class="col-sm-9">
+                                {{form.name}} 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                            <label class="col-sm-3 control-label" for="{{form.category.label_for_id}} ">{{form.category.label}}  </label>
+                            <div class="col-sm-9">
+                               {{form.category}}
+                                
+                            </div>
+                        </div>
+                              <div class="form-group">
+                            <label class="col-sm-3 control-label" for="{{form.subcategory.label_for_id}}">{{form.subcategory.label}} </label>
+                            <div class="col-sm-9">
+                                    {{form.subcategory}}
+                                
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label class="col-sm-3 control-label" for="{{form.product_type.label_for_id}}">{{form.product_type.label}}</label>
+                            <div class="col-sm-9">
+                                    {{form.product_type}}
+                                
+                            </div>
+                        </div>
+                    
+                
+                         <div class="form-group">
+                               <label class="col-sm-3 control-label" for="{{form.status.label_for_id}}">{{form.status.label}} </label>
+                            <div class="col-sm-9">
+                                    {{form.status}}
+                                
+                              </div>
+                          </div>
+                    </div>
+                <footer class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <button class="btn btn-primary">Submit</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
+                        </div>
+                    </div>
+                </footer>
+            </section>
+        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type='text/javascript'>
+     $(document).ready(function(){
+        $("#subcategory").html("<option>--Select Subcategory--</option>");
+       
+         $('#category').change(function(){
+           var category=$(this).val();
+           var csrf='{{ csrf_token }}'
+             $.ajax({
+               url:"{% url  'get_subcategory' %}",
+               method:'POST',
+               data:{'category':category,'csrfmiddlewaretoken':csrf},
+               success:function(data){
+             
+                  if(data.length>0)
+                  {
+                    $('#subcategory').html("<option>--Select--</option>");
+                    for(i=0;i<data.length;i++)
+                    {        
+                     $("#subcategory").append("<option value='"+data[i].pk+"'>"+data[i].fields.subcategory_name+"</option>");
+                    }
+                  }
+                  else
+                  {
+                    $("#subcategory").html("<option>--No Data Found--</option>"); 
+                  }
+               
+              }
+   
+             });
+
+         });
+          $('#product_type').html("<option value=''>--Select Product Type--</option>")
+         $('#subcategory').change(function(){
+             var subcategory=$(this).val();
+             var csrf='{{csrf_token}}';
+             $.ajax({
+                 url:"{% url 'get_producttype'  %}",
+                 method:'POST',
+                 data:{'subcategory':subcategory,'csrfmiddlewaretoken':csrf},
+                 success:function(data)
+                 {
+                    
+                     if(data.length>0)
+                     {
+                         
+                         $('#product_type').html("<option value=''>--Select--</option>");
+                        for(i=0;i<data.length;i++)
+                        {
+                            
+                          $('#product_type').append("<option value='"+data[i].pk+"'>"+data[i].fields.product_type+"<option>");
+                         }
+                     }
+                     else
+                     {
+                         $('#product_type').html("<option value=''>--No Data Found--</option>");
+                     }
+                   
+                   
+                 }
+             });
+         });
+
+     });
+  
+   
+   
+    
+   
+   </script>
+
+
+
+
+{% endblock %}
+

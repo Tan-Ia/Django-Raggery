@@ -104,34 +104,41 @@
                 </thead>
                 <tbody>
                 <tr class="gradeX">
-                        <td>1</td>
+                    {% for data_fetch in brand_data %}
+                        <td>{{forloop.counter}}</td>
                         <td>
-                            T-shirt
+                            {{data_fetch.brand_name}}
                         </td>
                         <td>
-                            T-shirt
+                                {{data_fetch.email}}
                         </td>
                         <td>
-                            T-shirt
+                                {{data_fetch.phone}}
                         </td>
                         <td>
-                            T-shirt
+                                {{data_fetch.founded_date}}
                         </td>
                         <td>
-                            T-shirt
+                                {{data_fetch.type_of_company}}
                         </td>
-                        <td>Lilen</td>
+                        <td> {{data_fetch.address}}</td>
                         <td>
-                            Women
+                                {{data_fetch.description|slice:'20'}}
                         </td>
-                        <td>this thi Women cloth category</td>
-                        <td class="center hidden-phone">Active</td>
+                        <td> <img src="{{data_fetch.icon.url}}" style="width: 42px; height: 44px;"/></td>
+                        <td class="center hidden-phone">
+                           {% if data_fetch.status == "Active" %} 
+                            <span style="color:green">{{data_fetch.status}}</span>
+                            {% else %}
+                            <span style="color:red">{{data_fetch.status}}</span>
+                            {% endif %}
+                        </td>
                         <td class="center actions">
                             <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
                             <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
                         </td>
                     </tr>
-                    
+                    {% endfor %}
             
                 </tbody>
             </table>
@@ -140,8 +147,9 @@
     
                 </div>
                 <div id="recent11" class="tab-pane">
-                    <form id="form" action="forms-validation.html" class="form-horizontal">
-    
+                    <form id="form" method="POST" action="" class="form-horizontal" enctype="multipart/form-data">
+
+                  {% csrf_token %}
             <div class="panel-body">
                     <form id="form" action="forms-validation.html" class="form-horizontal">
             <section class="panel panel-primary">
@@ -224,12 +232,12 @@
                                     <div class="input-append">
                                         <div class="uneditable-input">
                                             <i class="fa fa-file fileupload-exists"></i>
-                                            <span class="fileupload-preview" >Screenshot from 2019-03-26 02-16-05.png</span>
+                                            <span class="fileupload-preview" ></span>
                                         </div>
                                         <span class="btn btn-default btn-file">
                                             <span class="fileupload-exists">Change</span>
                                             <span class="fileupload-new">Select file</span>
-                                            <input type="file" name="">
+                                            <input type="file" name="icon">
                                         </span>
                                         <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
                                     </div>

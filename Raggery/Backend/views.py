@@ -8,6 +8,8 @@ from .forms.category_form import CategoryForm
 from .forms.subcategory_form import SubcategoryForm
 from .forms.product_type_form import ProductTypeFrom
 from .forms.product_metarial_form import ProductMetarialForm
+from .forms.product_specification_form import ProductSpecificationFrom
+from .forms.product_size_form import ProductSizeForm
 from .forms.brand_form import BrandForm
 from .models import *
 from django.core import serializers
@@ -239,14 +241,20 @@ def product_update(request,pk):
 # start  brand method
 @login_required
 def brand(request):
+        brand_data=BrandModel.objects.all()
         if request.method =='POST':
-                # form_data=BrandForm(request.POST)
-                return HttpResponse('ok')
+                form_data=BrandForm(request.POST,request.FILES)
+                print(form_data)
+                if form_data.is_valid():
+                        form_data.save();
+                        messages.success(request,'Save Operation Successfully Done')
+                        return HttpResponseRedirect(reverse('brand'))
         else:
                 form_data=BrandForm()
                 # data='ok'
         context={
-                'form':form_data
+                'form':form_data,
+                'brand_data':brand_data
         }        
                 
         return render(request,'Backend/brand/brand.html',context)
@@ -310,15 +318,41 @@ def productMetarialUpdate(request,pk):
 
 
 # end product metarial method 
+# start product specification method 
 @login_required
 def productSpecification(request):
-        if request.method =='GET':
-                return render(request,'Backend/product_specification.html')
+        all_data=ProductSpecificationModel.objects.all()
+        if request.method =='POST':
+                form_data=ProductSpecificationFrom(request.POST)
+                if form_data.is_valid():
+                        form_data.save()
+                        messages.success(request,'Save Operation Succsesful')
+                        return HttpResponseRedirect(reverse('specification'))
+        else:
 
+                form_data=ProductSpecificationFrom()
+        context={
+                'form':form_data,
+                'all_data':all_data
+        }        
+        return render(request,'Backend/product_specification/product_specification.html',context)
+# end product specification method 
 @login_required
 def productSize(request):
-        if request.method =='GET':
-                return render(request,'Backend/product_size.html')  
+        all_data=ProductSizeModel.objects.all()
+        if request.method =='POST':
+                form_data=ProductSizeForm(request.POST)
+                if form_data.is_valid():
+                        form_data.save()
+                        messages.success(request,'Save Operation Succsessfully Done')
+                        return HttpResponseRedirect(reverse('size'))
+        else: 
+                form_data=ProductSizeForm()  
+        context={
+                'form':form_data,
+                'all_data':all_data
+        }             
+        return render(request,'Backend/product_size/product_size.html',context)  
 
 @login_required
 def productTemplate(request):
