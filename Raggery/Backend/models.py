@@ -82,40 +82,41 @@ class ProductSizeModel(models.Model):
     def __str__(self):
         return self.name
 
-# class TemplateParentModel(models.Model):
-#     product_name=models.CharField(max_length=60)
-#     product_code=models.CharField(max_length=60)
-#     category=models.ForeignKey(CategoryModel,on_delete=models.DO_NOTHING,default=1)
-#     subcategory=models.ForeignKey(SubcategoryModel,on_delete=models.DO_NOTHING,default=1)
-#     product_type=models.ForeignKey(ProductTypeModel,on_delete=models.DO_NOTHING,default=1)
-#     brand=models.ForeignKey(BrandModel,on_delete=models.DO_NOTHING,default=1)
-#     purchase_price=models.CharField(max_length=50)
-#     sale_price=models.CharField(max_length=50)
-#     off_price=models.CharField(max_length=50)
-#     created_at=models.DateTimeField(auto_now_add=True)
-#     updated_at=models.DateTimeField(auto_now=True)
-#     def __str__(self):
-#         return self.product_name
+class TemplateParentModel(models.Model):
+    product_name=models.CharField(max_length=60)
+    product_code=models.CharField(max_length=60)
+    category=models.ForeignKey(CategoryModel,on_delete=models.DO_NOTHING,default=1)
+    subcategory=models.ForeignKey(SubcategoryModel,on_delete=models.DO_NOTHING,default=1)
+    product_type=models.ForeignKey(ProductTypeModel,on_delete=models.DO_NOTHING,default=1)
+    brand=models.ForeignKey(BrandModel,on_delete=models.DO_NOTHING,default=1)
+    purchase_price=models.CharField(max_length=50)
+    sale_price=models.CharField(max_length=50)
+    off_price=models.CharField(max_length=50)
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.product_name
 
-# class TemplateMetarialChildModel(models.Model):
-#     template_parent=models.ForeignKey(TemplateParentModel,on_delete=models.DO_NOTHING,default=1)
-#     metarial_id=models.ForeignKey(ProductMetarial,on_delete=models.DO_NOTHING,default=1)  
-#     created_at=models.DateTimeField(auto_now_add=True)
-#     updated_at=models.DateTimeField(auto_now=True) 
+class TemplateMetarialChildModel(models.Model):
+    template=models.ForeignKey(TemplateParentModel,on_delete=models.DO_NOTHING,default=1)
+    metarial=models.ForeignKey(ProductMetarial,on_delete=models.DO_NOTHING,default=1)  
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True) 
+    
 
 
-# class TemplateSizeChildModel(models.Model):
-#     template_parent=models.ForeignKey(TemplateParentModel,on_delete=models.DO_NOTHING,default=1)
-#     size_id=models.ForeignKey(ProductSizeModel,on_delete=models.DO_NOTHING,default=1)  
-#     created_at=models.DateTimeField(auto_now_add=True)
-#     updated_at=models.DateTimeField(auto_now=True)
+class TemplateSizeChildModel(models.Model):
+    template=models.ForeignKey(TemplateParentModel,on_delete=models.DO_NOTHING,default=1)
+    size=models.ForeignKey(ProductSizeModel,on_delete=models.DO_NOTHING,default=1)  
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
   
 
-# class TemplateSpecificationChild(models.Model):
-#     template_parent=models.ForeignKey(TemplateParentModel,on_delete=models.DO_NOTHING,default=1)
-#     specification_id=models.ForeignKey(ProductSpecificationModel,on_delete=models.DO_NOTHING,default=1)  
-#     created_at=models.DateTimeField(auto_now_add=True)
-#     updated_at=models.DateTimeField(auto_now=True)
+class TemplateSpecificationChild(models.Model):
+    template=models.ForeignKey(TemplateParentModel,on_delete=models.DO_NOTHING,default=1)
+    specification=models.ForeignKey(ProductSpecificationModel,on_delete=models.DO_NOTHING,default=1)  
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
 
 # class ProductAddModel(models.Model):
 #     product_code=models.CharField(max_length=50)

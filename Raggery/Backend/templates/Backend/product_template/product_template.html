@@ -162,132 +162,93 @@
                     
                 </header>
                 <div class="panel-body">
-                      <hr>
+                      <!-- <hr>
                     <h4 style="margin-left: 405px;color: #48859c;"> Product Info</h4>
-                    <hr>
+                    <hr> -->
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Product Name </label>
+                        <label class="col-sm-3 control-label" for="{{template.product_name.label_for_id}}"> {{template.product_name.label}}</label>
                         <div class="col-sm-9">
-                            <input type="text" name="product_name" class="form-control" placeholder="Product Name " required/>
+                         {{template.product_name}}
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Product Code </label>
+                        <label class="col-sm-3 control-label" for="{{template.product_code.label_for_id}}">{{template.product_code.label}} </label>
                         <div class="col-sm-9">
-                            <input type="text" name="product_code" class="form-control" placeholder="Product Code" required/>
+                            {{template.product_code}}
                         </div>
                     </div>
                     
                          <div class="form-group">
-                        <label class="col-sm-3 control-label">Category Name </label>
+                        <label class="col-sm-3 control-label" for="{{template.category.label_for_id}}">{{template.category.label}} </label>
                         <div class="col-sm-9">
-                            <select id="company" class="form-control" name="category_name" required>
-                                <option value="">Choose a Category</option>
-                                <option value="apple">Apple</option>
-                                <option value="google">Google</option>
-                                <option value="microsoft">Microsoft</option>
-                    
-                            </select>
+                            {{template.category}}
                             
                         </div>
                     </div>
                         
 
                          <div class="form-group">
-                        <label class="col-sm-3 control-label">Sub Catagory </label>
+                        <label class="col-sm-3 control-label" for="{{template.subcategory.label_for_id}}">{{template.subcategory.label}} </label>
                         <div class="col-sm-9">
-                            <select id="company" class="form-control" name="subcategory_name" required>
-                                <option value="">Choose a SubCategory</option>
-                                <option value="apple">Apple</option>
-                                <option value="google">Google</option>
-                                <option value="microsoft">Microsoft</option>
-                    
-                            </select>
+                            {{template.subcategory}}
                         
                         </div>
                     </div>
                         
                          <div class="form-group">
-                        <label class="col-sm-3 control-label">Product Type </label>
+                        <label class="col-sm-3 control-label" for=" {{template.product_type.label_for_id}}"> {{template.product_type.label}} </label>
                         <div class="col-sm-9">
-                            <select id="company" class="form-control" name="product_type" required>
-                                <option value="">Choose a Product Type</option>
-                                <option value="apple">Apple</option>
-                                <option value="google">Google</option>
-                                <option value="microsoft">Microsoft</option>
-                    
-                            </select>
+                            {{template.product_type}}
                             
                         </div>
                     </div>
                         <div class="form-group">
-                        <label class="col-sm-3 control-label">Brand</label>
+                        <label class="col-sm-3 control-label" for="{{template.brand.label_for_id}}">{{template.brand.label}}</label>
                         <div class="col-sm-9">
-                            <input type="text" name="brand" class="form-control" placeholder="Brand" required/>
+                            {{template.brand}}
                         </div>
                     </div>
                      <div class="form-group">
-                        <label class="col-sm-3 control-label">Purchase Price </label>
+                        <label class="col-sm-3 control-label" for="{{template.purchase_price.label_for_id}}">{{template.purchase_price.label}}</label>
                         <div class="col-sm-9">
-                            <input type="text" name="purchase_price" class="form-control" placeholder="Purchase Price " required/>
+                            {{template.purchase_price}}
                             
                         </div>
                     </div>
                           <div class="form-group">
-                        <label class="col-sm-3 control-label">Sale Price </label>
+                        <label class="col-sm-3 control-label" for="{{template.sale_price.label_for_id}}">{{template.sale_price.label}} </label>
                         <div class="col-sm-9">
-                        <input type="text" name="sale_price" class="form-control" placeholder="Sale Price" required/>
+                            {{template.sale_price}}
                             
                         </div>
                     </div>
                      <div class="form-group">
-                        <label class="col-sm-3 control-label">Off Price </label>
+                        <label class="col-sm-3 control-label" for="{{template.off_price.label_for_id}}"> {{template.off_price.label}} </label>
                         <div class="col-sm-9">
-                            <input type="text" name="purchase_price" class="form-control" placeholder="Off Price" required/>
+                            {{template.off_price}}
                             
                         </div>
                     </div>
                 
                      <div class="form-group">
-                        <label class="col-sm-3 control-label">Material</label>
+                        <label class="col-sm-3 control-label" for="{{metarial_form.metarial.label_for_id}}">{{metarial_form.metarial.label}}</label>
                         <div class="col-sm-9">
-                            <select id="browsers" name="material" title="Please select at least one browser" class="form-control valid" size="5" multiple="multiple" required="">
-                                <option value="chrome">Chrome / Safari</option>
-                                <option value="ff">Firefox</option>
-                                <option value="ie">Internet Explorer</option>
-                                <option value="opera">Opera</option>
-                            </select>
-                            <label class="error" for="browsers"></label>
+                            {{metarial_form.metarial}}
                         </div>
                     </div>
                 
                       <div class="form-group">
-                            <label class="col-md-3 control-label">Size</label>
-                            <div class="col-md-6">
-                                <div class="btn-group">
-                                    <select class="form-control" multiple="multiple" data-plugin-multiselect="" data-multiselect-toggle-all="true" id="ms_example7" style="display: none;">
-                                        <option value="cheese">Cheese</option>
-                                        <option value="tomatoes">Tomatoes</option>
-                                        <option value="mozarella">Mozzarella</option>
-                                        <option value="mushrooms">Mushrooms</option>
-                                        <option value="pepperoni">Pepperoni</option>
-                                        <option value="onions">Onions</option>
-                                    </select><div class="btn-group"><button type="button" class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" title="Cheese, Tomatoes, Mozzarella, Mushrooms, Pepperoni, Onions" aria-expanded="false">6 selected <b class="caret"></b></button><ul class="multiselect-container dropdown-menu"><li class="active"><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" name="multiselect" value="cheese"> Cheese</label></a></li><li class="active"><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" name="multiselect" value="tomatoes"> Tomatoes</label></a></li><li class="active"><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" name="multiselect" value="mozarella"> Mozzarella</label></a></li><li class="active"><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" name="multiselect" value="mushrooms"> Mushrooms</label></a></li><li class="active"><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" name="multiselect" value="pepperoni"> Pepperoni</label></a></li><li class="active"><a href="javascript:void(0);"><label class="checkbox"><input type="checkbox" name="multiselect" value="onions"> Onions</label></a></li></ul></div>
-                                    <button id="ms_example7-toggle" class="btn btn-primary">Deselect All</button>
+                            <label class="col-md-3 control-label" for="{{metarial.size.label_for_id}}"> {{size.size.label}}</label>
+                            <div class="col-sm-9">
+                                
+                                    {{size.size}}
                                 </div>
-                            </div>
                         </div>
 
                   <div class="form-group">
-                        <label class="col-sm-3 control-label">Specification</label>
+                        <label class="col-sm-3 control-label" for="{{specification.specification.label_for_id}}">{{specification.specification.label}}</label>
                         <div class="col-sm-9">
-                            <select id="browsers" name="material" title="Please select at least one browser" class="form-control valid" size="5" multiple="multiple" required="">
-                                <option value="chrome">Chrome / Safari</option>
-                                <option value="ff">Firefox</option>
-                                <option value="ie">Internet Explorer</option>
-                                <option value="opera">Opera</option>
-                            </select>
-                            <label class="error" for="browsers"></label>
+                            {{specification.specification}}
                         </div>
                     </div>
                 </div>
@@ -310,7 +271,77 @@
 
 
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type='text/javascript'>
+     $(document).ready(function(){
+        $("#subcategory").html("<option>--Select Subcategory--</option>");
+       
+         $('#category').change(function(){
+           var category=$(this).val();
+           var csrf='{{ csrf_token }}'
+             $.ajax({
+               url:"{% url  'get_subcategory' %}",
+               method:'POST',
+               data:{'category':category,'csrfmiddlewaretoken':csrf},
+               success:function(data){
+             
+                  if(data.length>0)
+                  {
+                    $('#subcategory').html("<option>--Select--</option>");
+                    for(i=0;i<data.length;i++)
+                    {        
+                     $("#subcategory").append("<option value='"+data[i].pk+"'>"+data[i].fields.subcategory_name+"</option>");
+                    }
+                  }
+                  else
+                  {
+                    $("#subcategory").html("<option>--No Data Found--</option>"); 
+                  }
+               
+              }
+   
+             });
 
+         });
+          $('#product_type').html("<option value=''>--Select Product Type--</option>")
+         $('#subcategory').change(function(){
+             var subcategory=$(this).val();
+             var csrf='{{csrf_token}}';
+             $.ajax({
+                 url:"{% url 'get_producttype'  %}",
+                 method:'POST',
+                 data:{'subcategory':subcategory,'csrfmiddlewaretoken':csrf},
+                 success:function(data)
+                 {
+                    
+                     if(data.length>0)
+                     {
+                         
+                         $('#product_type').html("<option value=''>--Select--</option>");
+                        for(i=0;i<data.length;i++)
+                        {
+                            
+                          $('#product_type').append("<option value='"+data[i].pk+"'>"+data[i].fields.product_type+"<option>");
+                         }
+                     }
+                     else
+                     {
+                         $('#product_type').html("<option value=''>--No Data Found--</option>");
+                     }
+                   
+                   
+                 }
+             });
+         });
+
+     });
+  
+   
+   
+    
+   
+   </script>
+   
 
 
 {% endblock %}

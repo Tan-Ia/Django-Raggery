@@ -11,6 +11,7 @@ from .forms.product_metarial_form import ProductMetarialForm
 from .forms.product_specification_form import ProductSpecificationFrom
 from .forms.product_size_form import ProductSizeForm
 from .forms.brand_form import BrandForm
+from .forms.product_template_form import *
 from .models import *
 from django.core import serializers
 from Raggery.utils import render_to_pdf
@@ -356,8 +357,21 @@ def productSize(request):
 
 @login_required
 def productTemplate(request):
-        if request.method =='GET':
-                return render(request,'Backend/product_template.html')
+        if request.method =='POST':
+                return HttpResponse('ok')
+        else:
+                template=TemplateParentForm()
+                size=TemplateSizeChildForm()
+                specification=TemplateSpecificationFrom()
+                metarial=TemplateMetarialChildForm()
+        context={
+                'template':template,
+                'size':size,
+                'specification':specification,
+                'metarial_form':metarial
+
+        }
+        return render(request,'Backend/product_template/product_template.html',context)
 
 @login_required
 def productAdd(request):
